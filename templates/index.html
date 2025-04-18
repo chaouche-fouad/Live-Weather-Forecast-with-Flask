@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}" {% if current_lang=='ar' %}dir="rtl" {% endif %}>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🌤️ Weather App</title>
+
+    {% if current_lang == 'ar' %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    {% else %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% endif %}
+
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Roboto&display=swap"
+        rel="stylesheet">
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-4">
+
+        <div class="app-header d-flex justify-content-between align-items-center flex-wrap">
+            <h1 class="h4 mb-0">
+                🌦️ {% if current_lang == 'ar' %}معلومات الطقس
+                {% elif current_lang == 'fr' %}Infos météo
+                {% elif current_lang == 'es' %}Información del clima
+                {% else %}Weather Info
+                {% endif %}
+            </h1>
+            <div class="dropdown mt-2 mt-md-0">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    {{ languages[current_lang] }} ({{ current_lang.upper() }})
+                </button>
+                <ul class="dropdown-menu">
+                    {% for code, name in languages.items() %}
+                    <li><a class="dropdown-item" href="{{ url_for('set_language', lang_code=code) }}">{{ name }} ({{
+                            code.upper() }})</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="row justify-content-center my-4">
+            <div class="col-md-8 col-lg-6">
+                <form method="POST" class="d-flex flex-column flex-sm-row gap-2">
+                    <input type="text" name="city" class="form-control" placeholder="{{ labels.city_label }}"
+                        value="{{ city }}" required>
+                    <button type="submit" class="btn btn-primary">{{ labels.check_weather }}</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                {% if weather %}
+                <div class="card weather-card {{ weather.condition }}">
+                    <div class="card-body text-center">
+                        <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="icon"
+                            class="weather-icon mx-auto mb-3">
+                        <h4 class="mb-3">{{ weather.description }}</h4>
+
+                        <div class="weather-details">
+                            <div class="info-row">
+                                <div><span class="info-label">🌡 {{ labels.temperature }}:</span> {{ weather.temp }}°C
+                                </div>
+                                <div><span class="info-label">🤗 {{ labels.feels_like }}:</span> {{ weather.feels_like
+                                    }}°C</div>
+                            </div>
+                            <div class="info-row">
+                                <div><span class="info-label">💧 {{ labels.humidity }}:</span> {{ weather.humidity }}%
+                                </div>
+                                <div><span class="info-label">💨 {{ labels.wind_speed }}:</span> {{ weather.wind_speed
+                                    }} m/s</div>
+                            </div>
+                            <div class="info-row">
+                                <div><span class="info-label">🧭 {{ labels.pressure }}:</span> {{ weather.pressure }}
+                                    hPa</div>
+                                <div><span class="info-label">🕒 {{ labels.local_time }}:</span> {{ weather.local_time
+                                    }}</div>
+                            </div>
+                            <div class="info-row">
+                                <div><span class="info-label">🌅 {{ labels.sunrise }}:</span> {{ weather.sunrise }}
+                                </div>
+                                <div><span class="info-label">🌇 {{ labels.sunset }}:</span> {{ weather.sunset }}</div>
+                            </div>
+                        </div>
+
+                        <p class="text-light mt-3 small">📍 {{ labels.city_label }}: {{ weather.city }}</p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="alert alert-danger text-center">
+                    {{ labels.could_not_fetch }} "{{ city }}"
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

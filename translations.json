@@ -1,0 +1,54 @@
+{
+  "en": {
+    "temperature": "Temperature",
+    "feels_like": "Feels like",
+    "humidity": "Humidity",
+    "wind_speed": "Wind speed",
+    "pressure": "Pressure",
+    "city_label": "City",
+    "check_weather": "Check Weather",
+    "local_time": "Local Time",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "could_not_fetch": "Could not fetch weather data for"
+  },
+  "fr": {
+    "temperature": "Température",
+    "feels_like": "Ressenti",
+    "humidity": "Humidité",
+    "wind_speed": "Vitesse du vent",
+    "pressure": "Pression",
+    "city_label": "Ville",
+    "check_weather": "Vérifier la météo",
+    "local_time": "Heure locale",
+    "sunrise": "Lever du soleil",
+    "sunset": "Coucher du soleil",
+    "could_not_fetch": "Impossible d'obtenir les données météo pour"
+  },
+  "es": {
+    "temperature": "Temperatura",
+    "feels_like": "Sensación térmica",
+    "humidity": "Humedad",
+    "wind_speed": "Velocidad del viento",
+    "pressure": "Presión",
+    "city_label": "Ciudad",
+    "check_weather": "Consultar el clima",
+    "local_time": "Hora local",
+    "sunrise": "Amanecer",
+    "sunset": "Atardecer",
+    "could_not_fetch": "No se pudieron obtener datos meteorológicos para"
+  },
+  "ar": {
+    "temperature": "درجة الحرارة",
+    "feels_like": "يشعر وكأنه",
+    "humidity": "الرطوبة",
+    "wind_speed": "سرعة الرياح",
+    "pressure": "الضغط",
+    "city_label": "المدينة",
+    "check_weather": "تحقق من الطقس",
+    "local_time": "الوقت المحلي",
+    "sunrise": "شروق الشمس",
+    "sunset": "غروب الشمس",
+    "could_not_fetch": "تعذر الحصول على بيانات الطقس لـ"
+  }
+}
